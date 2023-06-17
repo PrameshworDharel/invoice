@@ -1,10 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header';
+import "./App.css";
+import Header from "./components/Header";
+import Center from "./components/Center";
+import CreateInvoice from "./components/CreateInvoice";
 function App() {
   return (
     <>
-    <Header/>
+      <div className="flex justify-between">
+        <Header />
+        <Center />
+      </div>
+      <div>
+        <CreateInvoice />
+      </div>
+      4
     </>
   );
 }
