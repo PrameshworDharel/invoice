@@ -1,18 +1,17 @@
 import "./App.css";
-import Header from "./components/Header";
-import Center from "./components/Center";
-import CreateInvoice from "./components/CreateInvoice";
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./Home";
+import  NewInvoicepage from "./NewInvoice"
 function App() {
   return (
     <>
-      <div className="flex justify-between">
-        <Header />
-        <Center />
-      </div>
-      <div>
-        <CreateInvoice />
-      </div>
-      4
+      <Routes>
+     <Route path="/" element={<Homepage />} >
+     <Route path="/createinvoice" element={<NewInvoicepage/>} />
+          </Route>
+      </Routes >              
+      
+   
     </>
   );
 }

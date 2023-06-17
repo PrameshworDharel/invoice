@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as ArrowdownIcon } from "../assets/icon-arrow-down.svg";
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
-import InvoiceCard from "./InvoiceCard";
+import InvoiceCard from "../components/InvoiceCard";
 const Center = () => {
   return (
     <>
@@ -18,16 +19,19 @@ const Center = () => {
               <p className="font-semibold">Filter by status</p>
               <ArrowdownIcon className="mt-3 text-secondary" />
             </div>
-
-            <button className="ml-6 gap-4 flex items-center px-4 bg-secondary rounded-full">
-              <div className="rounded-full w-[50px] h-[50px] bg-primary">
-                <PlusIcon className="relative mt-5 ml-5" />
-              </div>
-              <p className="text-primary font-semibold text-lg">New invoice</p>
-            </button>
+            <Link to="/createinvoice">
+              <button className="ml-6 gap-4 flex items-center px-4 py-2 bg-secondary rounded-full">
+                <div className="rounded-full w-[50px] h-[50px] bg-primary">
+                  <PlusIcon className="relative mt-5 ml-5" />
+                </div>
+                <p className="text-primary font-semibold text-lg">
+                  New invoice
+                </p>
+              </button>
+            </Link>
           </div>
         </div>
-        <InvoiceCard/>
+        <InvoiceCard />
       </div>
     </>
   );
