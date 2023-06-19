@@ -19,7 +19,7 @@ const Center = () => {
               <p className="font-semibold">Filter by status</p>
               <ArrowdownIcon className="mt-3 text-secondary" />
             </div>
-            <Link to="/createinvoice">
+            <Link to="/ Newinvoice">
               <button className="ml-6 gap-4 flex items-center px-4 py-2 bg-secondary rounded-full">
                 <div className="rounded-full w-[50px] h-[50px] bg-primary">
                   <PlusIcon className="relative mt-5 ml-5" />

@@ -7,11 +7,11 @@ function App() {
     <>
       <Routes>
      <Route path="/" element={<Homepage />} >
-     <Route path="/createinvoice" element={<NewInvoicepage/>} />
+    
           </Route>
       </Routes >              
       
-   
+      <NewInvoicepage/>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import AddItem from './AddItem'
+import AddItem from "./AddItem";
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
 const CreateInvoice = () => {
   return (
@@ -122,33 +122,37 @@ const CreateInvoice = () => {
               </div>
             </div>
             <div className="font-light">
-  <label>Project Description</label>
-  <input id="description" className="py-2 px-4 rounded-sm w-[620px] text-Dark" ></input>
-</div>
-<div className="mt-10 text-xl ">
-    <h1>Item List</h1>
-</div>
-<div className='mb-4 '>
-                            <AddItem />
-                        </div>
- <button className="mt-9 flex bg-Clay shadow-sm rounded-full w-[550px] h-[50px]">
+              <label>Project Description</label>
+              <input
+                id="description"
+                className="py-2 px-4 rounded-sm w-[620px] text-Dark"
+              ></input>
+            </div>
+            <div className="mt-10 text-xl ">
+              <h1>Item List</h1>
+            </div>
+            <div className="mb-4 ">
+              <AddItem />
+            </div>
+            <button className="mt-9 flex bg-Clay shadow-sm rounded-full w-[550px] h-[50px]">
               <div className="text-center mt-[18px] ml-44 ">
                 <PlusIcon className="" />
               </div>
-              <p className=" text-primary font-semibold text-lg mt-2">Add New Item</p>
+              <p className=" text-primary font-semibold text-lg mt-2">
+                Add New Item
+              </p>
             </button>
             <div className="flex mt-10">
-        <div className="bg-primary py-3 px-3 rounded-full ">
-            <button className="text-Dark">Discard</button>
-        </div>
-        <div className="bg-Grey py-3 px-3 rounded-full  ml-64 ">
-            <button className="text-LinkWater">SaveasDraft</button>
-        </div>
-        <div className="bg-tertiary py-3 px-3 rounded-full ml-20">
-            <button className="text-LinkWater  ">Save&Send</button>
-        </div>
-        
-        </div>
+              <div className="bg-primary py-3 px-3 rounded-full ">
+                <button className="text-Dark">Discard</button>
+              </div>
+              <div className="bg-Grey py-3 px-3 rounded-full  ml-64 ">
+                <button className="text-LinkWater">SaveasDraft</button>
+              </div>
+              <div className="bg-tertiary py-3 px-3 rounded-full ml-20">
+                <button className="text-LinkWater  ">Save&Send</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>

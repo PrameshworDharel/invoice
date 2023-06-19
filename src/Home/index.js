@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Center from './Center';
-const Homepage = (props) => {
+const Homepage = () => {
     return(
         <> 
    <div className="flex justify-between">
