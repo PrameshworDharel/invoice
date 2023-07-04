@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as RightArrow } from "../assets/icon-arrow-right.svg";
 import PaidStatus from "./PaidStatus";
-function InvoiceCard() {
+const InvoiceCard = () => {
   return (
+    <Link to="/InvoiceInfo">
     <div className="flex cursor-pointer duration-100 ease-in-out  py-4 shadow-lg text-primary bg-Dark rounded-lg items-center justify-between mt-16 p-9">
       <div className="flex items-center p-2">
         <h2 className="text-primary">
@@ -17,7 +19,7 @@ function InvoiceCard() {
       <h1 className="text-xl mr-8 text-primary">£</h1>
       <RightArrow className=" mr-2" />
     </div>
+    </Link>
   );
 }
-
 export default InvoiceCard;

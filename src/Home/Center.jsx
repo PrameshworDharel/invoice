@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as ArrowdownIcon } from "../assets/icon-arrow-down.svg";
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
 import InvoiceCard from "../components/InvoiceCard";
+
 const Center = () => {
   return (
     <>
@@ -15,16 +16,16 @@ const Center = () => {
             </p>
           </div>
           <div className="flex ml-[600px]">
-            <div className="flex mt-5">
+            <div className="flex mt-5 gap-2">
               <p className="font-semibold">Filter by status</p>
               <ArrowdownIcon className="mt-3 text-secondary" />
             </div>
-            <Link to="/ Newinvoice">
+            <Link to="CreateInvoice">
               <button className="ml-6 gap-4 flex items-center px-4 py-2 bg-secondary rounded-full">
                 <div className="rounded-full w-[50px] h-[50px] bg-primary">
                   <PlusIcon className="relative mt-5 ml-5" />
                 </div>
-                <p className="text-primary font-semibold text-lg">
+                <p className="text-primary font-semibold whitespace-nowrap">
                   New invoice
                 </p>
               </button>

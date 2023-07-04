@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import AddItem from "./AddItem";
+import Header from "../Home/Header";
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
 const CreateInvoice = () => {
+  
   return (
     <>
-      <div className="bg-Dark text-primary w-[50%] shadow-sm p-20 ">
+    <div className="flex">
+    <div className="fixed">
+    <Header/>
+    </div>
+      <div className="bg-Mirage text-primary w-[50%] shadow-sm p-20 ml-[60px]">
         <div className="mb-12">
           <h1 className="font-medium text-3xl">New Invoice</h1>
         </div>
@@ -56,6 +62,7 @@ const CreateInvoice = () => {
               <input
                 type="text"
                 id="clientName"
+               
                 class="bg-primary text-Dark py-2 px-4 rounded-sm w-[620px]"
               ></input>
             </div>
@@ -104,7 +111,7 @@ const CreateInvoice = () => {
             </div>
             <div className="flex gap-5">
               <div className="font-light ">
-                <label htmlFor="invoiceDate">Invoice Date</label>
+                <label >Invoice Date</label>
                 <input
                   type="date"
                   id="invoiceDate"
@@ -143,18 +150,22 @@ const CreateInvoice = () => {
               </p>
             </button>
             <div className="flex mt-10">
-              <div className="bg-primary py-3 px-3 rounded-full ">
-                <button className="text-Dark">Discard</button>
-              </div>
-              <div className="bg-Grey py-3 px-3 rounded-full  ml-64 ">
-                <button className="text-LinkWater">SaveasDraft</button>
-              </div>
-              <div className="bg-tertiary py-3 px-3 rounded-full ml-20">
-                <button className="text-LinkWater  ">Save&Send</button>
-              </div>
+              <button className="bg-primary py-3 px-3 rounded-full ">
+                <p className="text-Dark">Discard</p>
+              </button>
+              <button className="bg-Grey py-3 px-3 rounded-full ml-64 ">
+                <p className="text-LinkWater">SaveasDraft</p>
+              </button>
+              <button
+                className="bg-tertiary py-3 px-3 rounded-full ml-20"
+              
+              >
+                <p className="text-LinkWater">Save&Send</p>
+              </button>
             </div>
           </form>
         </div>
+      </div>
       </div>
     </>
   );
