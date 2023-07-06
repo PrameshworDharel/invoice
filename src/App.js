@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/CreateInvoice" element={<CreateInvoice />} />
-        <Route path="/InvoiceInfo" element={<InvoiceInfo />} />
+        <Route path="InvoiceInfo/:id" element={<InvoiceInfo />} />
         <Route path="/Delete" element={<Delete />} />
       </Routes>
       <Outlet />

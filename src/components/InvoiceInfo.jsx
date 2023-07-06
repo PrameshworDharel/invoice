@@ -1,27 +1,50 @@
-import React from "react";
-import Header from "../Home/Header";
+// components/InvoiceInfo.js
+
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ReactComponent as LeftArrow } from "../assets/icon-arrow-left.svg";
-import { Link } from "react-router-dom";
+import Header from "../Home/Header";
 const InvoiceInfo = () => {
+  const { id } = useParams();
+  const [invoice, setInvoice] = useState(null);
+
+  useEffect(() => {
+    fetchInvoiceData();
+  }, []);
+
+  const fetchInvoiceData = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/invoices/${id}`);
+      const data = await response.json();
+      setInvoice(data);
+    } catch (error) {
+      console.error("Error fetching invoice data:", error);
+    }
+  };
+
+  if (!invoice) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="flex ">
         <div className="fixed">
           <Header />
         </div>
-        <div className=" bg-primary ml-20 p-20 w-full text-primary">
-          <div className=" flex gap-3 ml-32">
+        <div className="bg-primary ml-20 p-20 w-full text-primary">
+          <div className="flex gap-3 ml-32">
             <Link to="/">
-            <button className="mt-2 flex gap-4">
-              <LeftArrow className="mt-2" />
-              <h1 className="text-secondary">Go back</h1>
-            </button>
+              <button className="mt-2 flex gap-4">
+                <LeftArrow className="mt-2" />
+                <h1 className="text-secondary">Go back</h1>
+              </button>
             </Link>
           </div>
-          
+
           <div className="flex bg-Clay justify-between w-[70%] mt-5 ml-32 p-10 rounded-2xl shadow-md">
             <div>
-              <h1 className="mt-2">Status</h1>
+              <h1 className="mt-2">Status: {invoice.status}</h1>
             </div>
             <div className="gap-6 flex ">
               <div className=" ">
@@ -30,11 +53,11 @@ const InvoiceInfo = () => {
                 </button>
               </div>
               <Link to="/Delete">
-              <div>
-                <button className="py-2 px-6 rounded-full bg-Red">
-                  Delete
-                </button>
-              </div>
+                <div>
+                  <button className="py-2 px-6 rounded-full bg-Red">
+                    Delete
+                  </button>
+                </div>
               </Link>
               <div>
                 <button className="py-2 px-6 rounded-full bg-tertiary">
@@ -46,14 +69,14 @@ const InvoiceInfo = () => {
           <div className=" bg-Clay justify-between w-[70%] mt-5 ml-32 p-10 rounded-2xl shadow-md">
             <div className="flex justify-between ">
               <div>
-                <p>#</p>
-                <p></p>
+                <p> #{invoice.id}</p>
+                <p> {invoice.clientName}</p>
               </div>
               <div className=" ">
-                <p>street</p>
-                <p>city</p>
-                <p>postCode</p>
-                <p>country</p>
+                <p>{invoice.address}</p>
+                <p>{invoice.city}</p>
+                <p>{invoice.postCode}</p>
+                <p>{invoice.country}</p>
               </div>
             </div>
 
@@ -61,9 +84,20 @@ const InvoiceInfo = () => {
               <div className="">
                 <p>Invoice Date</p>
                 <p className="mt-24">Payment Due</p>
+                <p>{invoice.selectDeliveryDate}</p>
               </div>
-              <div>Bill to</div>
-              <div>Sent to</div>
+              <div className=" ">
+                <p>Bill to:</p>
+                <p>{invoice.clientName}</p>
+                <p>{invoice.clientCity}</p>
+                <p>{invoice.clientAddress}</p>
+                <p>{invoice.clientPostCode}</p>
+                <p>{invoice.clientCity}</p>
+              </div>
+              <div>
+                <p>Sent to</p>
+                <p>{invoice.clientEmail}</p>
+              </div>
             </div>
 
             <div className="bg-Dark justify-between w-[90%] mt-20 p-2 ml-12 rounded-sm shadow-sm">
@@ -73,11 +107,12 @@ const InvoiceInfo = () => {
                 <div>Item price</div>
                 <div>Total</div>
               </div>
+              {/* Render the invoice items */}
             </div>
             <div className="bg-Mirage justify-between w-[90%] ml-12 shadow-md">
               <div className="flex justify-between p-5">
                 <div className="font-bold text-2xl">Amount Due</div>
-                <div className=" text-3xl"> £ </div>
+                <div className="text-3xl">£{invoice.amount}</div>
               </div>
             </div>
           </div>
@@ -86,4 +121,5 @@ const InvoiceInfo = () => {
     </>
   );
 };
+
 export default InvoiceInfo;

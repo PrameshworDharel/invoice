@@ -1,11 +1,11 @@
-import React from 'react';
-import { ReactComponent as TrashIcon } from '../assets/icon-delete.svg';
+import React from "react";
+import { ReactComponent as TrashIcon } from "../assets/icon-delete.svg";
 
 function AddItem() {
   return (
     <div className="flex  justify-between gap-10 mt-2 ">
       <div className="font-light ">
-        <label >Item Name</label>
+        <label>Item Name</label>
         <input
           type="text"
           id="item-name"
@@ -14,7 +14,7 @@ function AddItem() {
       </div>
 
       <div className="font-light">
-        <label >Qty.</label>
+        <label>Qty.</label>
         <input
           type="number"
           id="quantity"
@@ -37,15 +37,12 @@ function AddItem() {
           type="text"
           id="total"
           className="bg-primary text-Dark py-2 px-4 rounded-sm w-[70px] mt-5"
-          readOnly
         />
       </div>
 
-      
-        <button>
-          <TrashIcon className="mt-10 ml-16" />
-        </button>
-      
+      <button>
+        <TrashIcon className="mt-10 ml-16" />
+      </button>
     </div>
   );
 }
