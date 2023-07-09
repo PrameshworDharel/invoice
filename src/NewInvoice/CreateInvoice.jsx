@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import AddItem from "./AddItem";
 import axios from "axios";
 import Header from "../Home/Header";
-
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
 const CreateInvoice = () => {
-  const [values, setvalues] = useState({
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [values, setValues] = useState({
     address: "",
     city: "",
     postCode: "",
@@ -20,27 +22,80 @@ const CreateInvoice = () => {
     paymentTerms: "",
     description: "",
   });
+
+  useEffect(() => {
+    if (id) {
+      fetchInvoiceData();
+    }
+  }, [id]);
+
+  const fetchInvoiceData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/invoices/${id}`);
+      const invoiceData = response.data;
+      setValues(invoiceData);
+    } catch (error) {
+      console.error("Error fetching invoice data:", error);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setvalues({
-      ...values,
+    setValues((prevValues) => ({
+      ...prevValues,
       [name]: value,
-    });
+    }));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
-  };
-  axios
-    .post("http://localhost:5000/invoices", values)
-    .then((response) => {
-      console.log("Invoice created:", response.data);
-      // Do something with the response if needed
-    })
-    .catch((error) => {
-      console.error("Error creating invoice:", error);
-      // Handle the error if needed
+
+    if (id) {
+      updateInvoice();
+    } else {
+      createInvoice();
+    }
+
+    setValues({
+      address: "",
+      city: "",
+      postCode: "",
+      country: "",
+      clientName: "",
+      clientEmail: "",
+      clientAddress: "",
+      clientCity: "",
+      clientPostCode: "",
+      clientCountry: "",
+      selectDeliveryDate: "",
+      paymentTerms: "",
+      description: "",
     });
+  };
+
+  const createInvoice = () => {
+    axios
+      .post("http://localhost:5000/invoices", values)
+      .then((response) => {
+        console.log("Invoice created:", response.data);
+        navigate(`/InvoiceInfo/${response.data.id}`);
+      })
+      .catch((error) => {
+        console.error("Error creating invoice:", error);
+      });
+  };
+
+  const updateInvoice = () => {
+    axios
+      .put(`http://localhost:5000/invoices/${id}`, values)
+      .then((response) => {
+        console.log("Invoice updated:", response.data);
+        navigate(`/InvoiceInfo/${id}`);
+      })
+      .catch((error) => {
+        console.error("Error updating invoice:", error);
+      });
+  };
+
   return (
     <>
       <div className="flex">
@@ -184,7 +239,10 @@ const CreateInvoice = () => {
                     onChange={handleChange}
                     className="bg-primary text-Dark py-2 px-4 rounded-sm w-[300px]"
                   >
-                    <option value=""></option>
+                    <option value="next1day">Next 1 day</option>
+                    <option value="next7days">Next 7 days</option>
+                    <option value="next14days">Next 14 days</option>
+                    <option value="next30days">Next 30 days</option>
                   </select>
                 </div>
               </div>

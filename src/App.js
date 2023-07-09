@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/CreateInvoice" element={<CreateInvoice />} />
+        <Route path="/CreateInvoice/:id" element={<CreateInvoice />} />
         <Route path="InvoiceInfo/:id" element={<InvoiceInfo />} />
         <Route path="/Delete" element={<Delete />} />
       </Routes>

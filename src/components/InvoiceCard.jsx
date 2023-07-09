@@ -37,9 +37,11 @@ const InvoiceCard = () => {
                   {invoice.clientName}
                 </h2>
               </div>
+             <div className="flex gap-20">
+              <h1 className="text-xl  text-primary">£{invoice.amount}</h1>
               <PaidStatus />
-              <h1 className="text-xl mr-8 text-primary">£{invoice.amount}</h1>
-              <RightArrow className="mr-2" />
+              <RightArrow className="mr-2 mt-2" />
+              </div>
             </div>
           </Link>
         ))}

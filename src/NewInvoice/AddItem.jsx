@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactComponent as TrashIcon } from "../assets/icon-delete.svg";
-
-function AddItem() {
+const AddItem = () => {
   return (
     <div className="flex  justify-between gap-10 mt-2 ">
       <div className="font-light ">
@@ -45,6 +44,6 @@ function AddItem() {
       </button>
     </div>
   );
-}
+};
 
 export default AddItem;
