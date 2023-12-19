@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate  } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { ReactComponent as LeftArrow } from "../assets/icon-arrow-left.svg";
 import Header from "../Home/Header";
 import moment from "moment";
@@ -146,7 +146,7 @@ const InvoiceInfo = () => {
                     <div>Item price</div>
                     <div>Total</div>
                   </div>
-                  {/* Render the invoice items */}
+               
                 </div>
                 <div className="bg-Mirage justify-between w-[90%] ml-12 shadow-md">
                   <div className="flex justify-between p-5">

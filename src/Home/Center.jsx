@@ -6,6 +6,7 @@ import InvoiceCard from "../components/InvoiceCard";
 
 const Center = () => {
   const [invoiceCount, setInvoiceCount] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     fetchInvoiceCount();
@@ -21,9 +22,13 @@ const Center = () => {
     }
   };
 
+  const handleDropdownClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <>
-      <div className="p-32 ">
+      <div className="p-32">
         <div className="flex">
           <div>
             <h1 className="text-3xl font-bold">Invoices</h1>
@@ -32,9 +37,32 @@ const Center = () => {
             </p>
           </div>
           <div className="flex ml-[600px]">
-            <div className="flex mt-5 gap-2">
+            <div className="flex mt-5 gap-2 relative">
               <p className="font-semibold">Filter by status</p>
-              <ArrowdownIcon className="mt-3 text-secondary" />
+              <ArrowdownIcon
+                className={`mt-3 text-secondary ${
+                  isDropdownOpen ? "shadow" : ""
+                }`}
+                onClick={handleDropdownClick}
+              />
+              {isDropdownOpen && (
+                <div className="absolute bg-white rounded-md mt-7 shadow-md p-2">
+                  <label htmlFor="draft">
+                    <input type="checkbox" id="draft" />
+                    Draft
+                  </label>
+                  <br></br>
+                  <label htmlFor="pending">
+                    <input type="checkbox" id="pending" />
+                    Pending
+                  </label>
+                  <br></br>
+                  <label htmlFor="paid">
+                    <input type="checkbox" id="paid" />
+                    Paid
+                  </label>
+                </div>
+              )}
             </div>
             <Link to="CreateInvoice">
               <button className="ml-6 gap-4 flex items-center px-4 py-2 bg-secondary rounded-full">

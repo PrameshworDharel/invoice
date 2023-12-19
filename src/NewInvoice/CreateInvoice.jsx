@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import AddItem from "./AddItem";
+import { ReactComponent as TrashIcon } from "../assets/icon-delete.svg";
 import axios from "axios";
 import Header from "../Home/Header";
 import { ReactComponent as PlusIcon } from "../assets/icon-plus.svg";
@@ -95,7 +95,27 @@ const CreateInvoice = () => {
         console.error("Error updating invoice:", error);
       });
   };
+  const [itemName, setItemName] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [total, setTotal] = useState(0);
 
+  const handleQuantityChange = (e) => {
+    const newQuantity = e.target.value;
+    setQuantity(newQuantity);
+    calculateTotal(newQuantity, price);
+  };
+
+  const handlePriceChange = (e) => {
+    const newPrice = e.target.value;
+    setPrice(newPrice);
+    calculateTotal(quantity, newPrice);
+  };
+
+  const calculateTotal = (newQuantity, newPrice) => {
+    const newTotal = newQuantity * newPrice;
+    setTotal(newTotal);
+  };
   return (
     <>
       <div className="flex">
@@ -259,13 +279,54 @@ const CreateInvoice = () => {
                 <h1>Item List</h1>
               </div>
               <div className="mb-4 ">
-                <AddItem />
+                <div className="flex justify-between gap-10 mt-2">
+                  <div className="font-light">
+                    <label>Item Name</label>
+                    <input
+                      type="text"
+                      value={itemName}
+                      onChange={(e) => setItemName(e.target.value)}
+                      className="bg-primary text-Dark py-2 px-1 rounded-sm mt-5"
+                    />
+                  </div>
+
+                  <div className="font-light">
+                    <label>Qty.</label>
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={handleQuantityChange}
+                      className="bg-primary text-Dark py-2 px-4  rounded-sm w-[70px] mt-5"
+                    />
+                  </div>
+
+                  <div className="font-light">
+                    <label>Price</label>
+                    <input
+                      type="text"
+                      value={price}
+                      onChange={handlePriceChange}
+                      className="bg-primary text-Dark py-2 px-4 rounded-sm w-[70px] mt-5"
+                    />
+                  </div>
+
+                  <div className="font-light">
+                    <label>Total</label>
+                    <div className=" text-white py-2 px-4 rounded-sm w-[70px] mt-5">
+                      {total}
+                    </div>
+                  </div>
+
+                  <button>
+                    <TrashIcon className="mt-10 ml-16" />
+                  </button>
+                </div>
               </div>
               <button className="mt-9 flex bg-Clay shadow-sm rounded-full w-[550px] h-[50px]">
                 <div className="text-center mt-[18px] ml-44 ">
                   <PlusIcon className="" />
                 </div>
-                <p className=" text-primary font-semibold text-lg mt-2">
+                <p className=" text-primary font-semibold text-lg ml-3 mt-2">
                   Add New Item
                 </p>
               </button>
